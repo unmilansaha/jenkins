@@ -1,0 +1,7 @@
+---
+- name: ping-playbook
+  hosts: test-server
+  gather_facts: no   # optional, speeds up ping playbook
+  tasks:
+    - name: Learning ping module
+      ping:
