@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Clone Repository') {
+            steps {
+
+                git branch: 'main', credentialsId: 'git-credential', url: 'https://github.com/unmilansaha/jenkins.git'
+            }
+        }
+		stage('Ansible-script') {
+            steps {
+
+              ansiblePlaybook credentialsId: 'admin-update', installation: 'ansible-tool', inventory: 'test-inv', playbook: 'test.yaml', vaultTmpPath: ''
+            }
+        }
+    }
+}
